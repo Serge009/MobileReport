@@ -181,7 +181,7 @@ function buildLineDetails(xAxis, series) {
 
 var SlideLineGraph = function(callback) {
     try {
-        var vIn = $$$('#' + this.dataset.vin),
+       /* var vIn = $$$('#' + this.dataset.vin),
                 vOut = $$$('section.active'),
                 slideType = this.dataset.sd,
                 onAnimationEnd = function() {
@@ -191,7 +191,7 @@ var SlideLineGraph = function(callback) {
             vOut.classList.remove(slideOpts[slideType][1]);
             vOut.removeEventListener('webkitAnimationEnd', onAnimationEnd, false);
             vOut.removeEventListener('animationend', onAnimationEnd);
-        };
+        };*/
 
 
         var type = $(this).attr('data-type');
@@ -257,11 +257,13 @@ var SlideLineGraph = function(callback) {
             //alert('241' + e);
         }
 
+        alert("graph type = " + type);
+
         switch (parseInt(type)) {
             case 1:
                 console.log('type = 1');
                 graph_type = 1;
-                showLineGraph();
+                //showLineGraph();
                 break;
             case 2:
                 console.log('type = 2');
@@ -271,7 +273,7 @@ var SlideLineGraph = function(callback) {
             case 3:
                 console.log('type = 3');
                 graph_type = 3;
-                showPieGraph();
+                //showPieGraph();
                 break;
             default:
                 return;
@@ -281,7 +283,7 @@ var SlideLineGraph = function(callback) {
 
 
 
-        vOut.addEventListener('webkitAnimationEnd', onAnimationEnd, false);
+        /*vOut.addEventListener('webkitAnimationEnd', onAnimationEnd, false);
         vOut.addEventListener('animationend', onAnimationEnd);
         if (callback && typeof(callback) === 'function') {
             callback();
@@ -289,7 +291,7 @@ var SlideLineGraph = function(callback) {
         vOut.classList.remove('active');
         vIn.classList.remove('hidden');
         vIn.classList.add(slideOpts[slideType][0]);
-        vOut.classList.add(slideOpts[slideType][1]);
+        vOut.classList.add(slideOpts[slideType][1]);*/
     } catch (e) {
         //alert('272'+e);
     }

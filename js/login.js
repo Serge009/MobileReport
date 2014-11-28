@@ -1,5 +1,5 @@
 var Logining = function(callback) {
-    $('#shadow').show();
+    /*$('#shadow').show();
     var vIn = $$$('#' + this.dataset.vin),
             vOut = $$$('section.active'),
             slideType = this.dataset.sd,
@@ -10,12 +10,14 @@ var Logining = function(callback) {
         vOut.classList.remove(slideOpts[slideType][1]);
         vOut.removeEventListener('webkitAnimationEnd', onAnimationEnd, false);
         vOut.removeEventListener('animationend', onAnimationEnd);
-    };
+    };*/
 
     
     var company = localStorage.getItem('company') ? parseInt(localStorage.getItem('company')) : '';
     uuid = localStorage.getItem('uuid');
-    
+
+    alert("company = " + company);
+
     if(false && (uuid == null || uuid == '' || uuid.length < 10)) {
         notif.alert("Please connect to Internet and restart the application!", null, ' ');
         uuid = null;
@@ -37,6 +39,7 @@ var Logining = function(callback) {
             auth = 0;
             notif.alert('No Internet connection!', null, ' ');
         } else {
+            alert("starting ajax");
             $.ajax({
                 async: true,
                 type: "POST",
@@ -62,7 +65,7 @@ var Logining = function(callback) {
                     gfield_version: graph_field_version
                 }
             }).done(function(msg) {
-                //alert(msg);
+                alert(msg);
                 if (msg) {
                     
                     info = JSON.parse(msg);
@@ -99,7 +102,7 @@ var Logining = function(callback) {
                             if(infoSelected){
                             	clearInterval(loginInterval);
                                 updateCategoriesList();
-                            	vOut.addEventListener('webkitAnimationEnd', onAnimationEnd, false);
+                            	/*vOut.addEventListener('webkitAnimationEnd', onAnimationEnd, false);
                             	vOut.addEventListener('animationend', onAnimationEnd);
                             	if (callback && typeof(callback) === 'function') {
                             	    callback();
@@ -107,7 +110,7 @@ var Logining = function(callback) {
                             	vOut.classList.remove('active');
                             	vIn.classList.remove('hidden');
                             	vIn.classList.add(slideOpts[slideType][0]);
-                            	vOut.classList.add(slideOpts[slideType][1]);
+                            	vOut.classList.add(slideOpts[slideType][1]);*/
                                 dataBase.start();
                             }
                         }, 100);

@@ -1,216 +1,433 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-        <title>My App</title>
-        <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
-        <link rel="stylesheet" href="./css/new.css" type="text/css" media="screen">
-        <link rel="stylesheet" href="css/fontello/css/fontello.css">
-        <link rel="stylesheet" href="css/fontello/css/animation.css">
-        <link rel="stylesheet" href="css/spinningwheel.css" type="text/css" media="all" />
-        
-        <script defer="" src="cordova.js"></script>
-        <script defer="" src="./js/jquery.js"></script>
-        <script defer="" src="./js/fastclick.js"></script>
-        <script defer="" src="./js/db.js"></script>
-        <script defer="" src="./js/spinner.js"></script>
-        <script defer="" src="./js/app.js"></script>
-        <script defer="" src="./js/login.js"></script>
-        <script defer="" src="./js/categories.js"></script>
-        <script defer="" src="./js/types.js"></script>
-        <script defer="" src="./js/line.js"></script>
-        <script defer="" src="./js/bar.js"></script>
-        <script defer="" src="./js/pie.js"></script>
-        <!--<script defer="" src="./js/pushnotifications.js"></script>-->
-        <script defer="" src="./js/filter.js"></script>
-        <script defer="" src="./js/highcharts.js"></script>
-         <script defer="" src="./js/mail.js"></script>
-        <script type="text/javascript" src="js/spinningwheel-min.js?v=1.4"></script>
-        <!--<script type="text/javascript" src="PushNotification.js"></script>-->
-    </head>
-    <body class="ios7"> <!-- native | ios7 -->
-        <section id="main" class="active">
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <div id="login-div">
-                            <input type="text" id="login" class="default" autocapitalize="none" placeholder="User Name" />
-                            <input type="password" id="pass" class="default" placeholder="Password" />
-                            <button id="sign-in" class="default"><b>Login</b><i class="icon-right-open float-right"></i></button>
-                            <button id="btn-login" hidden="hidden" data-vin="categories" data-sd="sl"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="hidden" id="categories">
-            <header>
-                <h1 style="margin-left: 109px; margin-right: 109px;">Categories</h1>
-                <button id="logout" class="right" data-vin="main" data-sd="sr">
-                    <img style="margin-top: 8px;" src="img/logout.png" width="25" />
-                </button>
-            </header>
-            
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <ul class="arrowed" id="categories-list">
-                            
-                       </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="hidden" id="types">
-            <header>
-                <button class="left arrow" data-vin="categories" data-sd="sr">
-                    <div class="label">Back</div>
-                </button>
-                <h1 style="margin-left: 109px; margin-right: 109px;">Reports</h1>
-            </header>
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content" id="types-list">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="hidden" id="line">
-            <header>
-                <button class="left arrow" data-vin="types" data-sd="sr">
-                    <div class="label">Back</div>
-                </button>
-                <h1 style="margin-left: 109px; margin-right: 109px;"></h1>
-                <button class="right filter-btn" data-vin="line-filter" data-sd="sl">
-                    <img style="margin-top: 8px;" src="img/filter.png" width="25" />
-                </button>
-            </header>
-            
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <div id="container"></div>
-                        <div id="info"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="nav">
-                <div class="graph-btn nav-active">
-                    <div class="shadow-nav"></div>
-                    <div>
-                        <img src="img/chart.png" width="30" />
-                    </div>
-                    <label><b>Graph</b></label>
-                </div>
-                <div class="details-btn" data-vin="line-details" data-sd="sr">
-                    <div class="shadow-nav"></div>
-                    <div>
-                        <img src="img/table.png" width="30" />
-                    </div>
-                    <label><b>Details</b></label>
-                </div>
-            </div>
-        </section>
-            
-        <section class="hidden" id="line-details">
-            <header>
-                <button class="left arrow" data-vin="types" data-sd="sr">
-                    <div class="label">Back</div>
-                </button>
-                <button style="margin-left: 150px; margin-right: 109px;"  data-vin="mail" data-sd="popin">
-                    <img style="margin-top: 10px;" src="img/mail copy.png" height="25" />
-                </button>
-                <button class="right filter-btn" data-vin="line-filter" data-sd="sl">
-                    <img style="margin-top: 8px;" src="img/filter.png" width="25" />
-                </button>
-            </header>
-            
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <table class="details" style="margin-bottom: 70px">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        <label></label>
-                    </div>
-                </div>
-            </div>
-            <div class="nav">
-                <div class="graph-btn" data-vin="line" data-sd="sl">
-                    <div class="shadow-nav"></div>
-                    <div>
-                        <img src="img/chart.png" width="30" />
-                    </div>
-                    <label><b>Graph</b></label>
-                </div>
-                <div class="details-btn nav-active">
-                    <div class="shadow-nav"></div>
-                    <div>
-                        <img src="img/table.png" width="30" />
-                    </div>
-                    <label><b>Details</b></label>
-                </div>
-            </div>
-        </section>
-        
-        <section class="hidden" id="line-filter">
-            <header>
-                <button class="left bold" data-vin="line" data-sd="sr">
-                    <img style="margin-top: 8px;" src="img/cancel.png" width="25" />
-                </button>
-                <button id="apply-filter" class="right bold" data-vin="line" data-sd="sr">
-                    <img style="margin-top: 8px;" src="img/check.png" width="25" />
-                </button>
-            </header>
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <ul id="filters-list">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>My App</title>
+    <!--        <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
+            <link rel="stylesheet" href="./css/new.css" type="text/css" media="screen">-->
+    <link rel="stylesheet" href="css/fontello/css/fontello.css">
+    <link rel="stylesheet" href="css/fontello/css/animation.css">
 
-        <section id="mail" class="hidden">
-            <header>
-                <button class="left arrow" data-vin="line-details" data-sd="popout">
-                    <div class="label">Back</div>
-                </button>
-                <h1 style="margin-left: 109px; margin-right: 109px;">Mail</h1>
-            </header>
-            <div class="scrollMask"></div>
-            <div class="scrollWrap">
-                <div class="scroll">
-                    <div class="content">
-                        <div id="mail-div">
-                            <input id="mail-from" type="email" class="default" autocapitalize="none" placeholder="@from" />
-                            <input id="mail-to" type="email" class="default" autocapitalize="none" placeholder="@to" />
-                            <input id="mail-subject" type="text" class="default" placeholder="subject" />
-                            <button id="send-mail" class="default"><b>Send</b><i class="icon-right-open float-right"></i></button>
-                        </div>
-                    </div>
+    <link rel="stylesheet" href="css/newDesign.css">
+
+    <script defer="" src="cordova.js"></script>
+    <script defer="" src="./js/jquery.js"></script>
+    <script defer="" src="./js/fastclick.js"></script>
+    <script defer="" src="./js/db.js"></script>
+    <script defer="" src="./js/spinner.js"></script>
+    <script defer="" src="./js/app.js"></script>
+    <script defer="" src="./js/login.js"></script>
+    <script defer="" src="./js/categories.js"></script>
+    <script defer="" src="./js/types.js"></script>
+    <script defer="" src="./js/line.js"></script>
+    <script defer="" src="./js/bar.js"></script>
+    <script defer="" src="./js/pie.js"></script>
+    <!--<script defer="" src="./js/pushnotifications.js"></script>-->
+    <script defer="" src="./js/filter.js"></script>
+    <script defer="" src="./js/highcharts.js"></script>
+    <script defer="" src="./js/mail.js"></script>
+    <script type="text/javascript" src="js/spinningwheel-min.js?v=1.4"></script>
+    <!--<script type="text/javascript" src="PushNotification.js"></script>-->
+
+    <script type="text/javascript" src="js/modules/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="js/modules/jquery-ui.min.js"></script>
+
+    <script defer="" src="./js/navigation.js"></script>
+
+
+</head>
+<body> <!-- native | ios7 -->
+
+
+<div class="section active" id="login" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div style="width: 100%; /*display: inline-block;*/ text-align: center;">
+        <img src="img/logo1.png">
+
+        <h2 style="color: white;">Login Info</h2>
+    </div>
+    <form>
+        <input type="text" id="input-login"
+               style="padding-left: 15%; background: url('img/user.png') no-repeat 5px 6px , #C8CFD9; background-size: 30px 30px"
+               placeholder="username"><br>
+        <input type="password" id="input-pass"
+               style="padding-left: 15%; background: url('img/pass.png') no-repeat  5px 6px , #C8CFD9; background-size: 30px 30px"
+               placeholder="password"><br>
+        <input type="button" value="Login" id="button-login">
+        <input type="hidden" id="btn-login">
+    </form>
+
+</div>
+
+
+<div class="section hidden" id="categories" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="header">
+        <h2>Categories <img src="img/logout.png" id="categories-img"></h2>
+    </div>
+    <div id="categories-list" class="list" style="width: 100%; margin-top: 60px;">
+        <div class="elem-list orange">
+            <img src="img/icncekvesenet.png">
+
+            <h2>Category1</h2>
+        </div>
+        <div class="elem-list ginger">
+            <img src="img/iconbanka.png">
+
+            <h2>Category2</h2>
+        </div>
+        <div class="elem-list red">
+            <img src="img/iconcasa.png">
+
+            <h2>Category3</h2>
+        </div>
+        <div class="elem-list purple">
+            <img src="img/iconcarihesap.png">
+
+            <h2>Category4</h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="section hidden" id="mail" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <!--    <div class="header">
+            <h2>Mail <img src="img/logout.png"></h2>
+        </div>-->
+    <!--<div style="height: 50px; width: 100%; background: #2C456B; border: 1px solid;"></div>-->
+    <div class="header_orders" style="position: fixed; z-index: 1; margin: 0;">
+        <div id="back-mail">
+            <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+        </div>
+
+    </div>
+    <form style="margin-top: 50px;">
+        <input type="text"
+               style="padding-left: 15%; background: url('img/layer_22.png') no-repeat 5px 6px , #C8CFD9; background-size: 30px 30px"
+               placeholder="from"><br>
+        <input type="text"
+               style="padding-left: 15%; background: url('img/layer_22.png') no-repeat  5px 6px , #C8CFD9; background-size: 30px 30px"
+               placeholder="to"><br>
+        <input type="text" style="padding-left: 5%; width: 75%;  background:  #C8CFD9;" placeholder="subject"><br>
+        <input type="button" value="Login">
+    </form>
+
+</div>
+
+<div class="section hidden" id="orders" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="header_orders" style="position: fixed; z-index: 1; margin: 0;">
+        <div id="back-orders">
+            <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+        </div>
+        <div id="mail-orders">
+            <img src="img/mail%20copy.png"
+                 style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%">Mail</h3>
+        </div>
+        <div id="filter-orders">
+            <!--<img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">-->
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 82%">Filter</h3>
+        </div>
+    </div>
+    <div id="header-details" class="table-header" style="">
+        <div><h3 style="margin-left: 5px;">Date</h3></div>
+        <div><h3 style="margin-left: 5px;">Sum</h3></div>
+        <div><h3 style="margin-left: 5px;">Sum</h3></div>
+    </div>
+    <div id="body-details" class="table-div" style="margin-top: 60px;">
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+        <div class="order-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+            <div><h4>10</h4></div>
+        </div>
+    </div>
+
+    <div class="bottom-orders" style="position: fixed; width: 100%;">
+        <div id="orders-graph" style="border-right: 1px solid #808080;">
+            <img src="img/Graph%20Icon.png"
+                 style="float: left; width: 27px; height: 27px; position: absolute; margin-top: 43px; left: 10%;">
+
+            <h3 style="float: right; margin-top: 43px; margin-left: 22%; position: absolute; color: white;">Graph</h3>
+        </div>
+        <div>
+            <img src="img/Detail%20icon.png"
+                 style="float: left; width: 27px; height: 27px; position: absolute; margin-top: 43px; left: 60%;">
+
+            <h3 style="float: right; margin-top: 43px; margin-left: 22%; position: absolute; color: white;">Details</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="section hidden" id="filter" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="header_orders">
+        <div id="cross-filter">
+            <img src="img/cross.png"
+                 style="width: 20px; height: 20px; float: left; position: absolute; top: 15px; left: 10px;">
+        </div>
+        <div></div>
+        <div>
+            <img src="img/tick.png"
+                 style="width: 20px; height: 20px; float: right; position: absolute; top: 15px; left: 85%;">
+        </div>
+    </div>
+    <div class="filter-table-header">
+        <div><h3 style="margin-left: 5px;">Filter</h3></div>
+        <div><h3 style="margin-left: 5px;">Type</h3></div>
+    </div>
+    <div id="filters-list" class="filter-table-div">
+
+        <div class="filter-table">
+            <div><h4>Record 1</h4></div>
+            <div><h4>Record 2</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 3</h4></div>
+            <div><h4>Record 4</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 5</h4></div>
+            <div><h4>Record 6</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 7</h4></div>
+            <div><h4>Record 8</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 9</h4></div>
+            <div><h4>Record 10</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 11</h4></div>
+            <div><h4>Record 12</h4></div>
+        </div>
+        <div class="filter-table">
+            <div><h4>Record 13</h4></div>
+            <div><h4>Record 14</h4></div>
+        </div>
+
+
+    </div>
+    <div id="div-filter" style="width: 100%; height: 300px; position: absolute; display: none; bottom: 0; background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+        <div class="bottom-filters">
+            <div class="border-radius">
+                <div class="filter-button border-radius-left" style="border-right: 1px solid #354f77;" id="prev">
+                    <h4>Previous</h4>
+                </div>
+                <div class="filter-button border-radius-right" id="next">
+                    <h4>Next</h4>
                 </div>
             </div>
-        </section>
-        
-        <div id="shadow">
-            <div id="spinner">
-                <label><b>Loading</b></label>
+            <div class="border-radius">
+                <div class="filter-button border-radius-left" style="border-right: 1px solid #354f77;">
+                    <h4>Clear</h4>
+                </div>
+                <div class="filter-button border-radius-right">
+                    <h4>Done</h4>
+                </div>
             </div>
         </div>
+
+        <div class="div-date">
+            <div class="div-date-record">
+                <div style="border-right: 1px solid white;">16</div>
+                <div style="border-right: 1px solid white;">April</div>
+                <div>2014</div>
+            </div>
+            <div class="div-date-record">
+                <div style="border-right: 1px solid white;">17</div>
+                <div style="border-right: 1px solid white;">May</div>
+                <div>2014</div>
+            </div>
+            <div class="div-date-record">
+                <div style="border-right: 1px solid white;">18</div>
+                <div style="border-right: 1px solid white;">June</div>
+                <div>2014</div>
+            </div>
+            <div class="div-date-record">
+                <div style="border-right: 1px solid white;">19</div>
+                <div style="border-right: 1px solid white;">July</div>
+                <div>2014</div>
+            </div>
+            <div class="div-date-record">
+                <div style="border-right: 1px solid white;">16</div>
+                <div style="border-right: 1px solid white;">April</div>
+                <div>2014</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section hidden" id="groups" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="header_orders" style="position: fixed; z-index: 1; margin: 0;">
+        <div id="back-groups">
+            <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+        </div>
+        <div>
+        </div>
+        <div></div>
+    </div>
+    <div id="types-list" style="width: 100%; height: 100%; margin-top: 60px;">
+        <div class="category">
+            <img src="img/month.png">
+            <h4 style="color: white;">Category 1</h4>
+        </div>
+        <div class="category">
+            <img src="img/week.png">
+            <h4 style="color: white;">Category 2</h4>
+        </div>
+        <div class="category">
+            <img src="img/week.png">
+            <h4 style="color: white;">Category 3</h4>
+        </div>
+        <div class="category">
+            <img src="img/month.png">
+            <h4 style="color: white;">Category 4</h4>
+        </div>
+    </div>
+</div>
+
+<div class="section hidden" id="graph" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="header_orders" style="position: fixed; z-index: 1; margin: 0;">
+        <div id="back-graph">
+            <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+        </div>
+        <div id="mail-graph">
+            <img src="img/mail%20copy.png"
+                 style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%">Mail</h3>
+        </div>
+        <div id="filter-graph">
+            <!--<img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">-->
+
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 82%">Filter</h3>
+        </div>
+    </div>
+
+    <div class="table-div" style="margin-top: 60px; border: 1px solid red; min-height: 300px;">
+    </div>
+
+
+    <div class="bottom-orders" style="position: fixed; width: 100%;">
+        <div style="border-right: 1px solid #808080; background: linear-gradient(to bottom, #36517a, #44608b) !important;">
+            <img src="img/Graph%20Icon.png"
+                 style="float: left; width: 27px; height: 27px; position: absolute; margin-top: 43px; left: 10%;">
+
+            <h3 style="float: right; margin-top: 43px; margin-left: 22%; position: absolute; color: white;">Graph</h3>
+        </div>
+        <div style="background: linear-gradient(to top, #36517a, #44608b) !important;">
+            <img src="img/Detail%20icon.png"
+                 style="float: left; width: 27px; height: 27px; position: absolute; margin-top: 43px; left: 60%;">
+
+            <h3 style="float: right; margin-top: 43px; margin-left: 22%; position: absolute; color: white;">Details</h3>
+        </div>
+    </div>
+
+</div>
+
+<div id="shadow"></div>
+
 </body>
 </html>

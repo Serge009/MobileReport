@@ -2,6 +2,9 @@ function showBarGraph(sql) {
     console.log('showBarGraph');
     $('#shadow').show();
     $('#line #container, table.details thead, table.details tbody').html('');
+
+    alert("bar graph sql = " + graph_options.sql_command);
+
     try{
     if(!sql)
         sql = createFilterTable('filters-list', info.graph_filter, 
@@ -15,7 +18,7 @@ function showBarGraph(sql) {
         //alert(info.graph_filter);
         //alert(info.graph_filter_items);
     }
-    //alert(sql);
+    alert(sql);
     //alert(sql);
     //---------------------------
     var data;
@@ -46,7 +49,7 @@ function showBarGraph(sql) {
                     db: graph_options.table_name}
     }).success(function(msg){
         //$('div.ui-loader').hide();
-        
+        alert(msg);
         if(msg.length > 2){
             try{
                 data = JSON.parse(msg);
@@ -114,11 +117,13 @@ function buildBarGraph(xAxis, series){
  }
  
 function buildBarDetails(xAxis, series) {
-    var thead = '<tr class="ui-bar-d"><th>'+graph_options.xAxis_text+'</th>';
+    alert("buildBarDetail");
+
+    var thead = '<div><h3 style="margin-left: 5px;">'+graph_options.xAxis_text+'</h3></div>';
     var tbody = '';
     var data = [];
     for (var i in series) {
-        thead += '<th>' + series[i].name + '</th>';
+        thead += '<div><h3 style="margin-left: 5px;">' + series[i].name + '</h3></div>';
         for (var j in series[i].data) {
             i = parseInt(i);
             if (i == 0) {
@@ -128,22 +133,27 @@ function buildBarDetails(xAxis, series) {
             data[j][i + 1] = series[i].data[j];
         }
     }
-    thead += '</tr>';
+
 
     for (var i in data) {
-        tbody += '<tr>';
+        tbody += '<div class="order-table">';
         for (var j in data[i]) {
-            tbody += '<td>';
+            tbody += '<div><h4>';
             if (j == 0) {
                 tbody += '<b>' + data[i][j] + '</b>';
             } else {
                 tbody += data[i][j];
             }
-            tbody += '</td>';
+            tbody += '</h4></div>';
         }
-        tbody += '</tr>';
+        tbody += '</div>';
     }
+
+    alert(thead);
+    alert(tbody);
     
-    $('#line-details table.details thead').html(thead);
-    $('#line-details table.details tbody').html(tbody);
+    $('#header-details').html(thead);
+    $('#body-details').html(tbody);
+
+    showDetailsPage();
 }
