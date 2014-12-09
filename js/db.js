@@ -27,7 +27,7 @@ var app = {
     },
     
     confSavePass: function(buttonIndex){
-        //alert(buttonIndex);
+        console.log("confSavePass: btnIndex = " + buttonIndex);
         if(buttonIndex == 1) app1.saveLogin();
     },
             
@@ -73,15 +73,16 @@ dataBase = {
     },
             
     errorCB: function(err){
-        /*alert('ErrorCB');
+       console.log('ErrorCB');
         for(var i in err){
-            alert(err[i]);
-        }*/
+            console.log(err[i]);
+        }
         
     },
        
     createDB: function(tx){
-        
+        console.log("createDB");
+
         tx.executeSql('CREATE TABLE IF NOT EXISTS LOGIN (id unique, login, pass)');
         
         tx.executeSql('CREATE TABLE IF NOT EXISTS GRAPH_GROUP (id unique,'+
@@ -127,6 +128,7 @@ dataBase = {
     },
     
     start: function(){
+        console.log("DB start");
         db.transaction(dataBase.setIDs, dataBase.errorCB);
         db.transaction(dataBase.setVersions, dataBase.errorCB);
         if($('section.active').attr('id') == 'main')
@@ -134,6 +136,7 @@ dataBase = {
     },
             
     setIDs: function(tx){
+        console.log("setIds");
         tx.executeSql('SELECT id AS id FROM GRAPH_GROUP', [], parseIDs.parseGGIds, dataBase.errorCB);
         tx.executeSql('SELECT id AS id FROM GRAPH', [], parseIDs.parseGIds, dataBase.errorCB);
         tx.executeSql('SELECT id AS id FROM GRAPH_OPTIONS', [], parseIDs.parseGOIds, dataBase.errorCB);
@@ -144,6 +147,7 @@ dataBase = {
     },
             
     setVersions: function(tx){
+        console.log("setVertions");
         tx.executeSql('SELECT MAX(version) AS version FROM GRAPH_GROUP', [], parseVersions.setGGVersion, dataBase.errorCB);
         tx.executeSql('SELECT MAX(version) AS version FROM GRAPH', [], parseVersions.setGVersion, dataBase.errorCB);
         tx.executeSql('SELECT MAX(version) AS version FROM GRAPH_OPTIONS', [], parseVersions.setGOVersion, dataBase.errorCB);
@@ -160,6 +164,8 @@ var parseIDs = {
         for (i; i < len; i++) {
             GGIds[i] = results.rows.item(i).id;
         }
+
+        console.log(GGIds);
     },
     
     parseGIds: function(tx, results) {
@@ -168,6 +174,8 @@ var parseIDs = {
         for (i; i < len; i++) {
             GIds[i] = results.rows.item(i).id;
         }
+
+        console.log(GIds);
     },
     
     parseGOIds: function(tx, results) {
@@ -176,6 +184,7 @@ var parseIDs = {
         for (i; i < len; i++) {
             GOIds[i] = results.rows.item(i).id;
         }
+        console.log(GOIds);
     },
     
     parseGFIds: function(tx, results) {
@@ -184,6 +193,7 @@ var parseIDs = {
         for (i; i < len; i++) {
             GFIds[i] = results.rows.item(i).id;
         }
+        console.log(GFIds);
     },
     
     parseGFTIds: function(tx, results) {
@@ -192,6 +202,7 @@ var parseIDs = {
         for (i; i < len; i++) {
             GFTIds[i] = results.rows.item(i).id;
         }
+        console.log(GFTIds);
     },
             
     parseGFIIds: function(tx, results) {
@@ -200,14 +211,16 @@ var parseIDs = {
         for (i; i < len; i++) {
             GFIIds[i] = results.rows.item(i).id;
         }
+        console.log(GFIIds);
     },
 
     parseGFieldIds: function(tx, results) {
         var len = results.rows.length, i = 0;
         GFieldIds = [0];
         for (i; i < len; i++) {
-            GFIIds[i] = results.rows.item(i).id;
+            GFieldIds[i] = results.rows.item(i).id;
         }
+        console.log(GFieldIds);
     }
 };
 
@@ -218,7 +231,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_group_version = m ? m : 0;
             }
-            //alert('gg version '+graph_group_version);
+            console.log('gg version '+graph_group_version);
      },
              
     setGVersion: function(tx, results){
@@ -227,7 +240,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_version = m ? m : 0;
             }
-            //alert('g version '+graph_version);
+        console.log('g version '+graph_version);
      },
              
     setGOVersion: function(tx, results){
@@ -236,7 +249,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_options_version = m ? m : 0;
             }
-            //alert('go version '+graph_options_version);
+        console.log('go version '+graph_options_version);
      },
         
     setGFVersion: function(tx, results){
@@ -245,7 +258,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_filter_version = m ? m : 0;
             }
-            //alert('gf version '+graph_filter_version);
+        console.log('gf version '+graph_filter_version);
      },
              
     setGFTVersion: function(tx, results){
@@ -254,7 +267,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_filter_type_version = m ? m : 0;
             }
-            //alert('graph_filter_type_version = '+graph_filter_type_version);
+        console.log('graph_filter_type_version = '+graph_filter_type_version);
             //app1.start();
      },
              
@@ -264,7 +277,7 @@ parseVersions = {
                 var m = results.rows.item(i).version;
                 graph_filter_items_version = m ? m : 0;
             }
-            //alert('graph_filter_items_version = '+graph_filter_items_version);
+        console.log('graph_filter_items_version = '+graph_filter_items_version);
             //app1.start();
      },
 
@@ -274,7 +287,7 @@ parseVersions = {
             var m = results.rows.item(i).version;
             graph_field_version = m ? m : 0;
         }
-        //alert('graph_field_version = '+ graph_field_version);
+        console.log('graph_field_version = '+ graph_field_version);
         //app1.start();
     }
 };
@@ -336,8 +349,8 @@ saveInfo = {
                                                     '", version='+element.version+
                                                     ', deleted='+element.isdeleted+
                                                 ' WHERE id='+element.id;
-            
-                //alert('update gg '+ sql);
+
+                console.log('update gg '+ sql);
                 
                 tx.executeSql(sql);
                 
@@ -345,7 +358,7 @@ saveInfo = {
                 sql = 'INSERT INTO GRAPH_GROUP(id, group_name, logo_path, version, deleted) '+
                       'VALUES('+element.id+', "'+element.group_name+'", "'+element.logo_path+'", '
                       +element.version+', '+element.isdeleted+')';
-                //alert('insert gg '+ sql);
+                console.log('insert gg '+ sql);
                 
                 tx.executeSql(sql);
                       
@@ -369,7 +382,7 @@ saveInfo = {
                             ', version='+element.version+
                             ', deleted='+element.isdeleted+
                         ' WHERE id='+element.id;
-                //alert('update g = ' + sql);
+                console.log('update g = ' + sql);
             
                 tx.executeSql(sql);
                 
@@ -379,8 +392,8 @@ saveInfo = {
                       'VALUES('+element.id+', '+element.graph_group_id+', "'
                       +element.graph_name+'", "'+element.logo_path+'", '
                       +element.type+', '+element.version+', '+element.isdeleted+')';
-                
-                //alert('insert g = ' + sql);
+
+                console.log('insert g = ' + sql);
                 tx.executeSql(sql);
                       
             }
@@ -463,7 +476,7 @@ saveInfo = {
                         +"table_name = '"+element.table_name+"', "
                         +"yAxis_title_enabled = '"+element.yAxis_title_enabled+"'"
                     +" WHERE id = "+element.id;
-                //alert('update go = ' + sql);
+                console.log('update go = ' + sql);
                 tx.executeSql(sql);
                 
             } else {
@@ -505,8 +518,8 @@ saveInfo = {
                     "'"+element.yAxis_lineWidth+"', '"+element.yAxis_gridLineColor+"', '"+element.yAxis_gridLineWidth+"', "+
                     "'"+element.yAxis_text+"', '"+element.yAxis_align+"', '"+element.enableMouseTracking+"', '"+element.markerEnabled+"', "+
                     "'"+element.pie_series_name+"', '"+element.yAxis_title_enabled+"', '"+element.table_name+"')";
-                
-                //alert('insert go = ' + sql);
+
+                console.log('insert go = ' + sql);
                 tx.executeSql(sql);
                       
             }
@@ -530,7 +543,7 @@ saveInfo = {
                                 'version = "'+element.version+'", '+
                                 'deleted = "'+element.isdeleted+'" '+
                                 ' WHERE id='+element.id;
-                //alert('update go = ' + sql);
+                console.log('update go = ' + sql);
                 tx.executeSql(sql);
                 
             } else {
@@ -541,7 +554,7 @@ saveInfo = {
                 ' "'+element.graph+'", "'+element.filter_type+'", "'+element.default_value+'", "'
                 +element.name+'", "'+element.var_name+'", "'+element.version+'",'+
                 ' '+element.isdeleted+')';
-                //alert('insert go = ' + sql);
+                console.log('insert go = ' + sql);
                 tx.executeSql(sql);
                       
             }
@@ -578,7 +591,7 @@ saveInfo = {
                                 'version = "'+element.version+'", '+
                                 'deleted = "'+element.isdeleted+'", '+
                                 ' WHERE id='+element.id;
-                //alert('update gft = ' + sql);
+                console.log('update gft = ' + sql);
                 tx.executeSql(sql);
                 
             } else {
@@ -586,7 +599,7 @@ saveInfo = {
                         ' name, version, deleted) '+
                       'VALUES('+element.id+', '+
                 ' "' +element.name+'", "'+element.version+'", '+element.isdeleted+')';
-                //alert('insert gft = ' + sql);
+                console.log('insert gft = ' + sql);
                 tx.executeSql(sql);
                       
             }
@@ -608,7 +621,7 @@ saveInfo = {
                                 'version = "'+element.version+'", '+
                                 'deleted = "'+element.isdeleted+'" '+
                                 ' WHERE id='+element.id;
-                //alert('update gfi = ' + sql);
+                console.log('update gfi = ' + sql);
                 tx.executeSql(sql);
                 
             } else {
@@ -617,7 +630,7 @@ saveInfo = {
                       'VALUES('+element.id+', '+
                 ' "' +element.graph_filter+'", "' +element.list_value+ '", "' +element.display_value+
                 '", "' +element.version+'", '+element.isdeleted+')';
-                //alert('insert gfi = ' + sql);
+                console.log('insert gfi = ' + sql);
                 tx.executeSql(sql);
                       
             }
@@ -642,14 +655,14 @@ saveInfo = {
                 'version = "'+element.version+'", '+
                 'deleted = "'+element.isdeleted+'" '+
                 ' WHERE id='+element.id;
-                //alert('update gfi = ' + sql);
+                console.log('update gfi = ' + sql);
                 tx.executeSql(sql);
 
             } else {
                 sql = 'INSERT INTO GRAPH_FIELD(id, name, graph, length, data_type, align, mask, version, deleted) ' +
                 'VALUES ('+element.id+',"'+element.name+'",'+element.graph+','+element.length+',"'+element.data_type+'",' +
                 ' "'+element.align+'", "'+element.mask+'",'+element.version+','+element.isdeleted+')';
-                //alert('insert gfi = ' + sql);
+                console.log('insert gfi = ' + sql);
                 tx.executeSql(sql);
 
             }
@@ -755,6 +768,7 @@ selectInfo = {
             info.graph_field[i] = results.rows.item(i);
         }
         infoSelected = true;
+        console.log("infoSelected = " + infoSelected);
         //$.mobile.changePage("#categories");
     }
 };
@@ -766,15 +780,17 @@ app1 = {
 
     setEmail: function(){
         try {
+            console.log("setEmail");
             var email = localStorage.getItem('email') ? localStorage.getItem('email') : '';
             $("#mail-from").val(email);
         } catch (e) {
-            //NOP
+            console.log(e)
         }
 
     },
     
     setLogin: function(){
+        console.log("setLogin");
         app1.setEmail();
         var login = localStorage.getItem('login') ? localStorage.getItem('login') : '',
             pass = localStorage.getItem('pass') ? localStorage.getItem('pass') : '';
@@ -788,6 +804,7 @@ app1 = {
     },
             
     saveLogin: function(){
+        console.log("saveLogin");
         var login = $('input#login').val(),
             pass = $('input#pass').val();
     
@@ -796,6 +813,7 @@ app1 = {
     },
     
     logout: function(){
+        console.log("logout");
         $('input#login').val(''),
         $('input#pass').val('');
 		localStorage.setItem('login', '');
@@ -814,7 +832,7 @@ app1 = {
                     uuid: uuid
                     }
             }).done(function(msg) {
-                //alert('logged out ' + msg);
+                console.log('logged out ' + msg);
             });
     }
 };

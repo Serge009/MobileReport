@@ -3,23 +3,23 @@ function showBarGraph(sql) {
     $('#shadow').show();
     $('#line #container, table.details thead, table.details tbody').html('');
 
-    alert("bar graph sql = " + graph_options.sql_command);
+    console.log("bar graph sql = " + graph_options.sql_command);
 
-    try{
-    if(!sql)
-        sql = createFilterTable('filters-list', info.graph_filter, 
-                    info.graph_filter_items, graph_id, graph_options.sql_command, true);
-    else
-        sql = createFilterTable('filters-list', info.graph_filter, 
-                    info.graph_filter_items, graph_id, graph_options.sql_command, false);
-    }catch(e){
-    	//alert(e);
-        //alert(graph_options.sql_command);
-        //alert(info.graph_filter);
-        //alert(info.graph_filter_items);
+    try {
+        if (!sql)
+            sql = createFilterTable('filters-list', info.graph_filter,
+                info.graph_filter_items, graph_id, graph_options.sql_command, true);
+        else
+            sql = createFilterTable('filters-list', info.graph_filter,
+                info.graph_filter_items, graph_id, graph_options.sql_command, false);
+    } catch (e) {
+        console.log(e);
+        console.log(graph_options.sql_command);
+        console.log(info.graph_filter);
+        console.log(info.graph_filter_items);
     }
-    alert(sql);
-    //alert(sql);
+    console.log(sql);
+
     //---------------------------
     var data;
     var xAxis = {
@@ -28,7 +28,7 @@ function showBarGraph(sql) {
     var series = [];
     var j = 0;
     //---------------------------
-    
+
     //------------------------------------------------------------------
     //$('div.ui-loader').show();
 
@@ -37,24 +37,26 @@ function showBarGraph(sql) {
         type: 'POST',
         url: InfoURL,
         timeout: 20000,
-        error: function(){
-            //$('div.ui-loader').hide();
+        error: function () {
+            console.log("ajax error");
             $('#shadow').hide();
-           
+
             notif.alert('Error!', null, ' ');
-           	noData(false);
+            noData(false);
         },
-        data: {sql: sql,//graph_options.sql_command,
-                info: JSON.stringify(info.info),
-                    db: graph_options.table_name}
-    }).success(function(msg){
+        data: {
+            sql: sql,//graph_options.sql_command,
+            info: JSON.stringify(info.info),
+            db: graph_options.table_name
+        }
+    }).success(function (msg) {
         //$('div.ui-loader').hide();
-        alert(msg);
-        if(msg.length > 2){
-            try{
+        console.log(msg);
+        if (msg.length > 2) {
+            try {
                 data = JSON.parse(msg);
-                for(var i in data){
-                    if(i == 'x'){
+                for (var i in data) {
+                    if (i == 'x') {
                         xAxis.categories = data[i];
                     } else {
                         series[j] = {
@@ -73,53 +75,55 @@ function showBarGraph(sql) {
         } else {
             $('#shadow').hide();
             noData(true);
-            
+
         }
     });
     //------------------------------------------------------------------
-            
+
 }
 
-function buildBarGraph(xAxis, series){
+function buildBarGraph(xAxis, series) {
 
-        var max_w = innerWidth;//$(document).width();
-        var max_h = innerHeight;//$(document).height();
+    console.log("buildBarGraph - params: xAxis = " + xAxis + ", series = " + series);
 
-        $('#line #container').css('width', max_w*0.9);
-        $('#line #container').css('height', max_h*0.75);
-        options.xAxis.categories = xAxis.categories;
-        options.tooltip = {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            };
-    
-    	buildBarDetails(xAxis, series);
-    
-    
-    	for (var j  in series){
-    		for (var val in series[j].data){
-        		series[j].data[val] = parseFloat(series[j].data[val].toString().replace(/,/g, ''));
-    		}
-    	}
-    
-    	options.series = series;
-        options.chart.type = 'column';
+    var max_w = innerWidth;//$(document).width();
+    var max_h = innerHeight;//$(document).height();
+
+    $('#line #container').css('width', max_w * 0.9);
+    $('#line #container').css('height', max_h * 0.75);
+    options.xAxis.categories = xAxis.categories;
+    options.tooltip = {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    };
+
+    buildBarDetails(xAxis, series);
 
 
-       //----------------------------------------------------------
+    for (var j  in series) {
+        for (var val in series[j].data) {
+            series[j].data[val] = parseFloat(series[j].data[val].toString().replace(/,/g, ''));
+        }
+    }
 
-        $('#line #container').highcharts(options);
-    
- }
- 
+    options.series = series;
+    options.chart.type = 'column';
+
+
+    //----------------------------------------------------------
+
+    $('#line #container').highcharts(options);
+
+}
+
 function buildBarDetails(xAxis, series) {
-    alert("buildBarDetail");
+    console.log("buildBarDetails - params: xAxis = " + xAxis + ", series = " + series);
 
-    var thead = '<div><h3 style="margin-left: 5px;">'+graph_options.xAxis_text+'</h3></div>';
+    var thead = '<div><h3 style="margin-left: 5px;">' + graph_options.xAxis_text + '</h3></div>';
     var tbody = '';
     var data = [];
     for (var i in series) {
@@ -149,9 +153,9 @@ function buildBarDetails(xAxis, series) {
         tbody += '</div>';
     }
 
-    alert(thead);
-    alert(tbody);
-    
+    console.log("thead = " + thead);
+    console.log("tbody = " + tbody);
+
     $('#header-details').html(thead);
     $('#body-details').html(tbody);
 

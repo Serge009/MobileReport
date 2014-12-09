@@ -35,7 +35,7 @@ function sendMail(){
               		subject: subject,
           			body: body}
     	}).success(function(status) {
-            
+			console.log("status = " + status);
         	$('#shadow').hide();
             if(status){
                 $("section#mail button.left").click();

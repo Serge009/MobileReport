@@ -99,9 +99,9 @@ function createFilterTable(table_id, filter, filter_items, graph_id, sql, create
         console.log('createFilterTable');
         try {
             var tbody = buildFilterTable(table_id, filter, filter_items, graph_id);
-            alert(tbody);
+            console.log(tbody);
         } catch (e) {
-            //alert('104 = ' + e);
+            console.log(e);
         }
 
         $('div#' + table_id).html(tbody);
@@ -126,7 +126,7 @@ function createFilterTable(table_id, filter, filter_items, graph_id, sql, create
         $('button.filter-btn').show();
     }*/
 
-    alert("new_sql = " + new_sql);
+    console.log("new_sql = " + new_sql);
     return new_sql;
 
 
@@ -135,7 +135,7 @@ function createFilterTable(table_id, filter, filter_items, graph_id, sql, create
 
 function parseSQL(index, sql, values) {
     try {
-        alert('138 = '+sql);
+        console.log(sql);
         if (index >= sql.length) {
             return '';
         }
@@ -152,20 +152,20 @@ function parseSQL(index, sql, values) {
                 }
                 var_name += sql[i];
             }
-            //console.log(var_name);
+            console.log(var_name);
             return sql1 + findVarValue(var_name, values) + parseSQL(++i, sql, values);
         } else {
             return sql.slice(index, sql.length);
         }
     } catch (e) {
-        //alert('160 = ' + e);
+        console.log('160 = ' + e);
     }
 }
 
 function findVarValue(var_name, values) {
-    //console.log(values, var_name);
+    console.log(values + " " + var_name);
     for (var i in values) {
-        //console.log(values[i].name, var_name);
+        console.log(values[i].name + " = " + var_name);
         if (values[i].name == var_name) {
             return values[i].val;
         }
@@ -176,7 +176,7 @@ function findVarValue(var_name, values) {
 
 function buildFilterTable(table_id, filter, filter_items, graph_id) {
 
-    alert('buildFilterTable');
+    console.log('buildFilterTable');
     if (!table_id) {
         return '';
     }
@@ -194,7 +194,7 @@ function buildFilterTable(table_id, filter, filter_items, graph_id) {
             counter++;
             filter_type = findFilterType(filter[i].filter_type);
 
-            alert("filter_type = " + filter_type);
+            console.log("filter_type = " + filter_type);
             /*
              tbody += '<tr data-var-name="' + filter[i].var_name + '">';
              tbody += '<td>' + filter[i].name + '</td>';
@@ -207,7 +207,7 @@ function buildFilterTable(table_id, filter, filter_items, graph_id) {
             tbody += createSelectFilter(filter[i], filter_items, counter);
         }
     }
-    //alert(tbody);
+    console.log(tbody);
     return tbody;
     //$('#' + table_id + ' tbody').html(tbody);
 }
@@ -232,7 +232,7 @@ function findFilterType(filter_type) {
 }
 
 function createSelectFilter(filter, filter_items, counter) {
-    alert('createSelectFilter');
+    console.log('createSelectFilter');
     if (!filter) {
         return '';
     }
@@ -241,7 +241,7 @@ function createSelectFilter(filter, filter_items, counter) {
         filter_type = filter.filter_type;
 
     if (filter_type == 4) {
-        //alert(filter_type);
+        console.log(filter_type);
         for (var i in filter_items) {
             if (filter.id == filter_items[i].graph_filter
                 && filter_items[i].id == defaultFilter) {
@@ -264,7 +264,7 @@ function createSelectFilter(filter, filter_items, counter) {
             '<div><h4>' + today + '</h4></div>' +
             '</div>';
         } catch (e) {
-            //alert(e);
+            console.log(e);
         }
     }
 
@@ -293,7 +293,7 @@ function createFilterArray(table_id) {
          tmp.val = $(value).find('input').val();
          }
          */
-        alert(tmp.val);
+        console.log(tmp.val);
         res.push(tmp);
 
 

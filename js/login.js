@@ -16,7 +16,7 @@ var Logining = function(callback) {
     var company = localStorage.getItem('company') ? parseInt(localStorage.getItem('company')) : '';
     uuid = localStorage.getItem('uuid');
 
-    alert("company = " + company);
+    console.log("company = " + company);
 
     if(false && (uuid == null || uuid == '' || uuid.length < 10)) {
         notif.alert("Please connect to Internet and restart the application!", null, ' ');
@@ -39,7 +39,7 @@ var Logining = function(callback) {
             auth = 0;
             notif.alert('No Internet connection!', null, ' ');
         } else {
-            alert("starting ajax");
+            console.log("starting ajax");
             $.ajax({
                 async: true,
                 type: "POST",
@@ -65,7 +65,7 @@ var Logining = function(callback) {
                     gfield_version: graph_field_version
                 }
             }).done(function(msg) {
-                alert(msg);
+                console.log(msg);
                 if (msg) {
                     
                     info = JSON.parse(msg);
@@ -85,20 +85,20 @@ var Logining = function(callback) {
                             else
                                 db.transaction(app.clearDB);
                         } catch(e){
-                    		//alert(e);
+                            console.log(e);
                     	}
                         
                         InfoURL = (info.info.direct_connection == 1) ? "http://" + info.info.ip_adress :
                                 "http://mobilerpt.com/service/mobile/fetching.php";
                         
                         $('#shadow').hide();
-                    
+
                     	if (auth === 0) {
                     		notif.confirm('Save password?', app.confSavePass, ' ', ['YES', 'NO']);
                     	}
                     
                     	loginInterval = setInterval(function(){
-                            //alert(infoSelected);
+                            console.log("infoSelected = " + infoSelected);
                             if(infoSelected){
                             	clearInterval(loginInterval);
                                 updateCategoriesList();

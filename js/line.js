@@ -1,6 +1,6 @@
 function showLineGraph(sql) {
     try {
-        //alert(graph_options.sql_command);
+        console.log(graph_options.sql_command);
         $('#shadow').show();
         $('#line #container, table.details thead, table.details tbody').html('');
         try{
@@ -12,7 +12,7 @@ function showLineGraph(sql) {
                             info.graph_filter_items, graph_id, graph_options.sql_command, false);
          
         } catch(e){
-            //alert('14 = '+e);
+            console.log('14 = '+e);
         }
         //---------------------------
         var data;
@@ -72,7 +72,7 @@ function showLineGraph(sql) {
             }
         });
     } catch (e) {
-        //alert(e);
+        console.log(e);
         $('#shadow').hide();
         noData(true);
     }
@@ -85,7 +85,7 @@ function buildLineGraph(xAxis, series) {
 
     var max_w = innerWidth;//$(document).width();
     var max_h = innerHeight;//$(document).height();
-    //alert(max_w + ' - ' + max_h);
+    console.log(max_w + ' - ' + max_h);
     $('#line #container').css('width', max_w * 0.9);
     if (max_w < max_h) {
         $('#line #container').css('height', max_h * 0.75);
@@ -244,7 +244,7 @@ var SlideLineGraph = function(callback) {
             }
         }
         } catch(e){
-            //alert('232 = ' + e);
+            console.log('232 = ' + e);
         }
         options = {};
         
@@ -252,12 +252,12 @@ var SlideLineGraph = function(callback) {
         try{
             options.legend.x = (parseInt(graph_options.legend_x) / 100) * $(document).width();
             options.legend.width = parseInt(graph_options.legend_width);
-            //alert('240 = ' + graph_options.sql_command);
+            console.log('240 = ' + graph_options.sql_command);
         } catch(e){
-            //alert('241' + e);
+            console.log('241' + e);
         }
 
-        alert("graph type = " + type);
+        console.log("graph type = " + type);
 
         switch (parseInt(type)) {
             case 1:
@@ -305,7 +305,7 @@ function setOptions() {
                 return [value];
             });
             graph_options.colors = graph_options.colors.join();
-            //alert(graph_options.colors);
+            console.log(graph_options.colors);
          }   
    options = {
        colors: graph_options.colors.replace(/\s+/g, '').split(","),
@@ -405,7 +405,7 @@ function setOptions() {
    };
    
    for(var i in graph_options){
-       //alert(i + ' = ' + graph_options[i] + ' ' + typeof graph_options[i]);
+       console.log(i + ' = ' + graph_options[i] + ' ' + typeof graph_options[i]);
    }
    options.legend.width = parseInt(graph_options.legend_width);
         /*
@@ -478,7 +478,7 @@ function setOptions() {
         */
         //alert(options.colors);
     } catch (e) {
-        //alert('458 = ' + e);
+        console.log('458 = ' + e);
     }
 
 }

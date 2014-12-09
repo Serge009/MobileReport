@@ -11,7 +11,7 @@ var slideOpts = {
     sl: ['slin', 'slout'],
     sr: ['srin', 'srout'],
     popin: ['popin', 'noanim'],
-    popout: ['noanim', 'popout'],
+    popout: ['noanim', 'popout']
 };
 
 var clearNode = function (node) {
@@ -129,6 +129,8 @@ var TextboxResize = function (el) {
 
 var App2 = {
     init: function () {
+        console.log("App2.init()")
+
         FastClick.attach(document.body);
 
         var opts = {
@@ -152,7 +154,7 @@ var App2 = {
         var target = document.getElementById('spinner');
         var spinner = new Spinner(opts).spin(target);
 
-        var textboxes = $$('h1');
+        /*var textboxes = $$('h1');
         for (var i = 0; i < textboxes.length; i++)
             TextboxResize(textboxes[i]);
 
@@ -162,7 +164,7 @@ var App2 = {
 
         var navbtns = $$('header button');
         for (var i = 0; i < navbtns.length; i++)
-            navbtns[i].addEventListener('click', Slide, false);
+            navbtns[i].addEventListener('click', Slide, false);*/
 
 
 //        var signin = $$('#sign-in');
@@ -185,15 +187,16 @@ var App2 = {
             }
         });
 
-        $('#button-login').bind('click', function () {
+        $('#button-login').bind('touchend', function () {
             login = $('#input-login').val();
             pass = $('#input-pass').val();
 
-            alert(login + " " + pass);
+            console.log(login + " " + pass);
+
             serial = localStorage.getItem('serial');
 
-            //alert('uuid: ' + uuid);
-            alert('serial: ' + serial);
+            console.log('uuid: ' + uuid);
+            console.log('serial: ' + serial);
 
             if ((serial == null || serial == '') && (login != 'demo' || pass != 'demo') && login && pass) {
                 navigator.notification.prompt(
@@ -208,7 +211,7 @@ var App2 = {
                     '1234567890'                 // defaultText
                 );
             } else {
-                alert("$('#btn-login').click();")
+                console.log("$('#btn-login').click();")
                 $('#btn-login').click();
             }
 
@@ -220,7 +223,7 @@ var App2 = {
 
         $('#logout').bind('click', app1.logout);
 
-        $('.nav>div:not(.nav-active)').bind('touchstart', function () {
+        /*$('.nav>div:not(.nav-active)').bind('touchstart', function () {
             $(this).find('.shadow-nav').show();
         });
 
@@ -228,8 +231,8 @@ var App2 = {
             setTimeout(function () {
                 $('.nav>div:not(.nav-active) .shadow-nav').hide();
             }, 300)
-            //$(this).find('.shadow-nav').show();
-        })
+
+        })*/
 
     }
 };
@@ -240,6 +243,7 @@ $(function () {
 
 function onDeviceReady() {
     try {
+        console.log("onDeviceReady()")
         //$("section.hidden .nav").hide();
         /*
          if (parseInt(device.version) >= 7)
@@ -368,18 +372,21 @@ function onDeviceReady() {
             App2.init();
             app.initialize();
         } catch (e) {
-            //alert(e);
+            console.log(e);
         } finally {
+            console.log("splashscreen.hide()");
             navigator.splashscreen.hide();
         }
     }
 }
 
 function fileEntry() {
+    console.log("fileEntry()");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, null);
 }
 
 function onFileSystemSuccess(fileSystem) {
+    console.log("onFileSystemSuccess()");
     fileSystem.root.getFile("", {create: true, exclusive: false}, gotFileEntry, null);
 }
 
@@ -388,9 +395,12 @@ function gotFileEntry(file_entry) {
         $PATH = file_entry.fullPath + '/';
     else
         $PATH = "file:///storage/sdcard0/";
+
+    console.log("$PATH = " + $PATH);
 }
 
 function isFileExists(fileSource, element, index) {
+    console.log("isFileExists - params: fileSource = " + fileSource + ", element = " + element + ", index = " + index);
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
         fileSystem.root.getFile(fileSource, {create: false},
             function (file_entry) {
@@ -455,6 +465,7 @@ function isFileExists(fileSource, element, index) {
 }
 
 function downloadFile(name) {
+    console.log("downloadFile " + name);
     window.requestFileSystem(
         LocalFileSystem.PERSISTENT, 0,
         function onSuccess(fileSystem) {
@@ -468,10 +479,10 @@ function downloadFile(name) {
                         img_path + name,
                         $PATH + name,
                         function (theFile) {
-                            //alert('downloaded ' + theFile.toURI());
+                            console.log('downloaded ' + theFile.toURI());
                         },
                         function (error) {
-                            //alert('error');
+                            console.log(error);
                         }
                     );
                 }, null);
@@ -479,6 +490,8 @@ function downloadFile(name) {
 }
 
 function isGraphImgExists(fileSource, element, index, category) {
+    console.log("isGraphImgExists - params: fileSource = " + fileSource + ", element = " + element + ", index = " + index + ", category = " + category);
+
     var counter = 0,
         graph_type = ' data-vin="line-details" data-sd="sl" ';
 

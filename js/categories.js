@@ -1,11 +1,11 @@
 function updateCategoriesList() {
-    alert("creating list of categories")
+    console.log("updateCategoriesList")
     try{
         list = '';
         if (info.graph_groups.length > 0) {
             $('div#categories-list').html('');
             info.graph_groups.forEach(function(element, index) {
-                alert("element = " + element.logo_path + ", index = " + index);
+                console.log("element = " + element.logo_path + ", index = " + index);
                 isFileExists(element.logo_path, element, index);
 
             });
@@ -14,7 +14,7 @@ function updateCategoriesList() {
 
         }
     }catch(e){
-        //alert(e);
+        console.log(e);
     }
 }
 
@@ -33,7 +33,7 @@ function setCategoriesList(index){
 
         var listitems = $$('#categories-list>div');
         for (var i = 0; i < listitems.length; i++) {
-            alert(i);
+            console.log(i);
             listitems[i].addEventListener('click', SlideTypes, false);
         }
     }
