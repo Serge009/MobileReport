@@ -89,7 +89,7 @@ function buildBarGraph(xAxis, series) {
     var max_w = innerWidth;//$(document).width();
     var max_h = innerHeight;//$(document).height();
 
-    $('#line #container').css('width', max_w * 0.9);
+    $('#line #container').css('width', max_w);
     $('#line #container').css('height', max_h * 0.75);
     options.xAxis.categories = xAxis.categories;
     options.tooltip = {
@@ -116,7 +116,7 @@ function buildBarGraph(xAxis, series) {
 
     //----------------------------------------------------------
 
-    $('#line #container').highcharts(options);
+    $('#container').highcharts(options);
 
 }
 
@@ -154,10 +154,11 @@ function buildBarDetails(xAxis, series) {
     }
 
     console.log("thead = " + thead);
-    console.log("tbody = " + tbody);
+    //console.log("tbody = " + tbody);
 
     $('#header-details').html(thead);
     $('#body-details').html(tbody);
 
-    showDetailsPage();
+    //showDetailsPage();
+    showGraphPage();
 }

@@ -30,6 +30,7 @@
     <script defer="" src="./js/filter.js"></script>
     <script defer="" src="./js/highcharts.js"></script>
     <script defer="" src="./js/mail.js"></script>
+    <script defer="" src="./js/test.js"></script>
     <script type="text/javascript" src="js/spinningwheel-min.js?v=1.4"></script>
     <!--<script type="text/javascript" src="PushNotification.js"></script>-->
 
@@ -47,12 +48,12 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;">
-    <div style="width: 100%; /*display: inline-block;*/ text-align: center;">
-        <img src="img/logo1.png">
+    <div style="width: 100%; height: 200px; /*display: inline-block;*/ text-align: center;">
+        <img src="img/logo.png">
 
         <h2 style="color: white;">Login Info</h2>
     </div>
-    <form>
+    <form style="height: 100%; margin-bottom: 20px;">
         <input type="text" id="input-login"
                style="padding-left: 15%; background: url('img/user.png') no-repeat 5px 6px , #C8CFD9; background-size: 30px 30px"
                placeholder="username"><br>
@@ -73,7 +74,7 @@
     <div class="header">
         <h2>Categories <img src="img/logout.png" id="categories-img"></h2>
     </div>
-    <div id="categories-list" class="list" style="width: 100%; margin-top: 60px;">
+    <div id="categories-list" class="list" style="width: 100%; margin-top: 50px;">
         <div class="elem-list orange">
             <img src="img/icncekvesenet.png">
 
@@ -101,7 +102,7 @@
 <div class="section hidden" id="mail" style="background-image: url(img/bg640x1136.png);-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;">
+    background-size: cover; height: 100%;">
     <!--    <div class="header">
             <h2>Mail <img src="img/logout.png"></h2>
         </div>-->
@@ -110,11 +111,11 @@
         <div id="back-mail">
             <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 12%">Back</h3>
         </div>
 
     </div>
-    <form style="margin-top: 50px;">
+    <form style="margin-top: 50px; width: 100%;">
         <input type="text"
                style="padding-left: 15%; background: url('img/layer_22.png') no-repeat 5px 6px , #C8CFD9; background-size: 30px 30px"
                placeholder="from"><br>
@@ -135,18 +136,17 @@
         <div id="back-orders">
             <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 12%"></h3>
         </div>
         <div id="mail-orders">
-            <img src="img/mail%20copy.png"
-                 style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">
+            <img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 43%; top: 12px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%">Mail</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%"></h3>
         </div>
         <div id="filter-orders">
-            <!--<img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">-->
+            <img src="img/filter.png" style="width: 33px; height: 22px; float: left; position: absolute; left: 82%; top: 15px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 82%">Filter</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 82%"></h3>
         </div>
     </div>
     <div id="header-details" class="table-header" style="">
@@ -250,13 +250,11 @@
     background-size: cover;">
     <div class="header_orders">
         <div id="cross-filter">
-            <img src="img/cross.png"
-                 style="width: 20px; height: 20px; float: left; position: absolute; top: 15px; left: 10px;">
+            <img src="img/cross.png" style="width: 20px; height: 20px; float: left; position: absolute; top: 15px; left: 10px;">
         </div>
         <div></div>
         <div>
-            <img src="img/tick.png"
-                 style="width: 20px; height: 20px; float: right; position: absolute; top: 15px; left: 85%;">
+            <img src="img/tick.png" style="width: 20px; height: 20px; float: right; position: absolute; top: 15px; left: 85%;">
         </div>
     </div>
     <div class="filter-table-header">
@@ -300,16 +298,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;">
-        <div class="bottom-filters">
-            <div class="border-radius">
-                <div class="filter-button border-radius-left" style="border-right: 1px solid #354f77;" id="prev">
-                    <h4>Previous</h4>
-                </div>
-                <div class="filter-button border-radius-right" id="next">
-                    <h4>Next</h4>
-                </div>
-            </div>
-            <div class="border-radius">
+        <div class="bottom-filters" style=" margin-top: 8px;">
+
+            <div class="border-radius" style=" width: 90%; margin-left: 4%;">
                 <div class="filter-button border-radius-left" style="border-right: 1px solid #354f77;">
                     <h4>Clear</h4>
                 </div>
@@ -321,23 +312,23 @@
 
         <div class="div-date">
             <div class="div-date-record">
-                <div style="border-right: 1px solid white;">16</div>
-                <div style="border-right: 1px solid white;">April</div>
+                <div style = "border-right: 1px solid white;">16</div>
+                <div style = "border-right: 1px solid white;">April</div>
                 <div>2014</div>
             </div>
             <div class="div-date-record">
-                <div style="border-right: 1px solid white;">17</div>
-                <div style="border-right: 1px solid white;">May</div>
+                <div style = "border-right: 1px solid white;">17</div>
+                <div style = "border-right: 1px solid white;">May</div>
                 <div>2014</div>
             </div>
             <div class="div-date-record">
-                <div style="border-right: 1px solid white;">18</div>
-                <div style="border-right: 1px solid white;">June</div>
+                <div style = "border-right: 1px solid white;">18</div>
+                <div style = "border-right: 1px solid white;">June</div>
                 <div>2014</div>
             </div>
             <div class="div-date-record">
-                <div style="border-right: 1px solid white;">19</div>
-                <div style="border-right: 1px solid white;">July</div>
+                <div style = "border-right: 1px solid white;">19</div>
+                <div style = "border-right: 1px solid white;">July</div>
                 <div>2014</div>
             </div>
             <div class="div-date-record">
@@ -357,7 +348,7 @@
         <div id="back-groups">
             <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 12%"></h3>
         </div>
         <div>
         </div>
@@ -391,22 +382,20 @@
         <div id="back-graph">
             <img src="img/back.png" style="width: 35px; height: 37px; float: left; position: absolute; top: 7px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 16%">Back</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 12%"></h3>
         </div>
         <div id="mail-graph">
-            <img src="img/mail%20copy.png"
-                 style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">
+            <img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 43%; top: 12px;">
 
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%">Mail</h3>
+            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 52%"></h3>
         </div>
         <div id="filter-graph">
             <!--<img src="img/mail%20copy.png" style="width: 38px; height: 27px; float: left; position: absolute; left: 40%; top: 12px;">-->
-
-            <h3 style="color: white; float: right; position: absolute; top: -5px; left: 82%">Filter</h3>
+            <img src="img/filter.png" style="width: 33px; height: 22px; float: left; position: absolute; left: 82%; top: 15px;">
         </div>
     </div>
 
-    <div class="table-div" style="margin-top: 60px; border: 1px solid red; min-height: 300px;">
+    <div id="container" class="table-div" style="margin-top: 60px; min-height: 300px;">
     </div>
 
 
@@ -417,7 +406,7 @@
 
             <h3 style="float: right; margin-top: 43px; margin-left: 22%; position: absolute; color: white;">Graph</h3>
         </div>
-        <div style="background: linear-gradient(to top, #36517a, #44608b) !important;">
+        <div id="graph-details" style="background: linear-gradient(to top, #36517a, #44608b) !important;">
             <img src="img/Detail%20icon.png"
                  style="float: left; width: 27px; height: 27px; position: absolute; margin-top: 43px; left: 60%;">
 
